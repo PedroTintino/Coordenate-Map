@@ -38,7 +38,7 @@ h1{
 
 #map{
     width: 70%;
-    height: 395px;
+    height: 530px;
 
 }
 
@@ -55,3 +55,87 @@ h1{
     flex-direction: row;
     flex-wrap: wrap;
 } */
+
+.new-data-form{
+    display: none;
+}
+
+.new-data-form{
+   
+    margin: 5px auto;
+    color: white;
+    width: 30%;
+    margin-left: 10px;
+    border: 2px solid white;
+    
+}
+
+.new-data-form label,input{
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 22px ;
+    margin-top: 40px;
+}
+
+.new-data-form input{
+    width: 80%;
+    margin-top: 20px;    
+    margin-bottom: 40px;
+    margin-left: 40px;    
+    
+}
+
+.form-buttons{
+    margin-left: 15%;
+    padding: 10px;
+}
+
+#send-btn{
+    background-color: green;
+}
+
+#cancel-btn{
+    background-color: red;
+}
+
+#send-btn, #cancel-btn{
+    padding: 10px;
+    border: none;
+    border-radius: 2px;
+    width: 120px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    transition: all 200ms ease;
+}
+
+#send-btn:hover{
+    background-color: black;
+    color: white;
+    border: 3px solid green;
+    border-radius: 2px;
+}
+
+#cancel-btn:hover{
+    background-color: black;
+    color: white;
+    border: 3px solid red;
+    border-radius: 2px;
+}
+
+
+footer{
+    padding: 1px;
+    display: flex;
+    color: white;
+    justify-content: center;
+}
+
+.filter li,label,input{
+    margin: 0;
+    display: flex;
+}
+
+.filter label{
+    margin-right: 5px;
+}
