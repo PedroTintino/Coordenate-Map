@@ -62,12 +62,14 @@
 <section class="map-container">
     <div id="map"></div>
       <form class="new-data-form">
+        <label>Referência/Local</label>
+        <input type="text" id="input-ref" placeholder="Digite aqui o nome de referência deste marcador">
         <label>Candidato</label>
-        <input type="text" id="input-candidato">
+        <input type="text" id="input-candidato" placeholder="Nome do Candidato">
         <label>Partido</label>
-        <input type="text" id="input-partido">
+        <input type="text" id="input-partido" placeholder="Nome do Partido">
         <label>Votos</label>
-        <input type="number" id="input-votos">
+        <input type="number" id="input-votos" placeholder="Votos (apenas números)">
         <div class="form-buttons">
         <button id="send-btn" type="submit" onclick="atualizarDescricao()">Salvar</button>
         <button id="cancel-btn" type="reset">Fechar</button>

@@ -215,7 +215,7 @@ marcadorBairros.addEventListener('change', function(){
 
 var marcadoresDeZona = [
 L.marker([-23.96894056396401, -46.386882575037404])
-.bindPopup('<h4>Zona 1(117)</h4>')
+.bindPopup('<h4>Zona 1(117)</h4>').bindPopup()
 .openPopup(),
 
 L.marker([-23.964486350412447, -46.382906916377635])
@@ -493,6 +493,8 @@ let textoPopup = '';
 
 function atualizarDescricao() {
   
+  const inputRef = document.getElementById('input-ref');
+  const ref = inputRef.value;
   const inputPartidos= document.getElementById('input-partido');
   const partido = inputPartidos.value;
   const inputVotos= document.getElementById('input-votos');
@@ -500,7 +502,7 @@ function atualizarDescricao() {
   const inputCandidatos= document.getElementById('input-candidato');
   const candidato = inputCandidatos.value;
 
- 
+  textoPopup += `<h4>${ref}</h4>`
   textoPopup += '<br>' + 'Candidato: '+ '<br>' + candidato + '<br>';
   textoPopup += '<br>' + 'Partido: '+ '<br>'+ partido + '<br>';
   textoPopup += '<br>'  + 'Votos: '+ '<br>' + votos;
