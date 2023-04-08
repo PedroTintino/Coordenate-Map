@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>Mapa 2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <div class="nav">
+        <h1>Meu Mapa Político</h1>
+        <div class="buttons">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                Selecione um ano
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">2012</a></li>
+                <li><a class="dropdown-item" href="#">2016</a></li>
+                <li><a class="dropdown-item" href="index2020.html" onclick="carregaDados2020()">2020</a></li>
+            </ul>
+            <a href="index.html"><button type="button" class="btn btn-primary btn-sm"
+                    onclick="avisoAdicionarinformacao()">Voltar para o
+                    Mapa
+                    de Previsões </button></a>
+
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                Filtros
+            </button>
+            <ul class="dropdown-menu filter">
+
+                <li>
+                    <label>Bairros</label>
+                    <input class="dropdown-item-one checkbox" type="checkbox" checked>
+                </li>
+
+                <li>
+                    <label>Zona</label>
+                    <input class="dropdown-item-two checkbox" type="checkbox" checked>
+                </li>
+
+                <li>
+                    <label>Colégio</label>
+                    <input class="dropdown-item-three checkbox" type="checkbox" checked>
+                </li>
+
+
+            </ul>
+
+        </div>
+
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                Dados Filtrados
+            </button>
+            <ul class="dropdown-menu">
+                <li><button type="button" id="neighborhood-btn" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#neighborhood-modal">Bairros</button></li>
+
+                <li> <button type="button" id="schools-btn" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#schools-modal">Colégios</button></li>
+            </ul>
+        </div>
+
+
+
+        <div class="modal" id="schools-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Dados Filtrados: Colégios</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+
+                    <div class="schools-result"></div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="neighborhood-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Dados Filtrados: Bairros</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+
+                    <div class="neighborhood-result"></div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <section class="map-container">
+        <div id="map"></div>
+        <form class="new-data-form">
+            <label>Referência/Local</label>
+            <input type="text" id="input-ref" placeholder="Digite aqui o nome de referência deste marcador">
+            <label>Candidato</label>
+            <input type="text" id="input-candidato" placeholder="Nome do Candidato">
+            <label>Partido</label>
+            <input type="text" id="input-partido" placeholder="Nome do Partido">
+            <label>Votos</label>
+            <input type="number" id="input-votos" placeholder="Votos (apenas números)">
+            <div class="form-buttons">
+                <button id="send-btn" type="submit" onclick="atualizarDescricao()">Salvar</button>
+                <button id="cancel-btn" type="reset">Fechar</button>
+            </div>
+        </form>
+    </section>
+    <footer>
+        <p>Todos os direitos reservados ©C3I Tecnologia 2023.</p>
+    </footer>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        const map = L.map('map').setView([-23.961158, -46.396557], 12);
+
+
+        var camadaMapa = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+        });
+
+        var marcadoresDeBairro = [
+            L.marker([-23.960401, -46.396842])
+                .bindPopup('')
+                .openPopup(),
+
+            L.marker([-23.983613, -46.388037])
+                .bindPopup('Japuí')
+                .openPopup(),
+
+            L.marker([-23.965069, -46.375210])
+                .bindPopup('')
+                .openPopup(),
+
+            //São Vicente
+            L.marker([-23.965519, -46.386695])
+                .bindPopup('<h4>São Vicente: </h4>')
+                .openPopup(),
+
+            //Vila Margarida
+            L.marker([-23.964516, -46.403999])
+                .bindPopup('<h4>Vila Margarida</h4>')
+                .openPopup(),
+
+
+            //Rio Branco
+            L.marker([-23.979166, -46.479497])
+                .bindPopup('<h4>Rio Branco</h4>')
+                .openPopup(),
+
+
+            //Itararé
+            L.marker([-23.966474, -46.363181])
+                .bindPopup('<h4>Itararé</h4>')
+                .openPopup(),
+
+            //Catipoã
+            L.marker([-23.956808, -46.387601])
+                .bindPopup('<h4>Catipoã</h4>')
+                .openPopup(),
+
+            //Cidade Naútica
+            L.marker([-23.941938, -46.389483])
+                .bindPopup('<h4>Cidade Naútica</h4>')
+                .openPopup(),
+
+            //Jockey clube
+            L.marker([-23.943988, -46.395548])
+                .bindPopup('<h4>Jockey Clube</h4>')
+                .openPopup(),
+
+            //Centro
+            L.marker([-23.966096, -46.386634])
+                .bindPopup('<h4>Centro</h4>')
+                .openPopup(),
+
+            //Gonzaguinha
+            L.marker([-23.970453, -46.384726])
+                .bindPopup('<h4>Gonzaguinha</h4>')
+                .openPopup(),
+
+            //Humaitá
+            L.marker([-23.944540, -46.454882])
+                .bindPopup('<h4>Humaitá</h4>')
+                .openPopup(),
+
+            //Samaritá
+            L.marker([-23.993088, -46.472956])
+                .bindPopup('<h4>Samaritá</h4>')
+                .openPopup(),
+
+            //Vila ema
+            L.marker([-23.996231, -46.488980])
+                .bindPopup('<h4>Vila Ema</h4>')
+                .openPopup(),
+
+            //Vila Nova São Vicente
+            L.marker([-23.988339, -46.489504])
+                .bindPopup('<h4>Parque das Bandeiras</h4>')
+                .openPopup(),
+
+            //Vila Nova São Vicente
+            L.marker([-23.968791, -46.396815])
+                .bindPopup('')
+                .openPopup(),
+
+            //Vila Nova São Vicente
+            L.marker([-23.959667, -46.404376])
+                .bindPopup('')
+                .openPopup(),
+
+            //Jardim Guaçu
+            L.marker([-23.951114, -46.379366])
+                .bindPopup('')
+                .openPopup(),
+
+            //Jardim Guaçu
+            L.marker([-23.969409, -46.408372])
+                .bindPopup('<h4>Jardim Guaçu</h4>')
+                .openPopup(),
+
+            //Jardim independência
+            L.marker([-23.969409, -46.408372])
+                .bindPopup('<h4>Jardim independência</h4>')
+                .openPopup(),
+
+            //Jardim irmã dolores
+            L.marker([-23.971633, -46.446140])
+                .bindPopup('<h4>Jardim Irmã Dolores</h4>')
+                .openPopup(),
+
+            //Parque Continental
+            L.marker([-23.955022, -46.457445])
+                .bindPopup('<h4>Parque Continental</h4>')
+                .openPopup(),
+
+            //Vila Nossa Sra. de Fatima
+            L.marker([-23.950920, -46.405044])
+                .bindPopup('<h4>Vila Nossa Sra. de Fatima</h4>')
+                .openPopup(),
+
+            //Vila Nossa Sra. de Fatima
+            L.marker([-23.956978, -46.379668])
+                .bindPopup('<h4>Vila Cascatinha</h4>')
+                .openPopup(),
+
+            //Vila Nova Mariana
+            L.marker([-23.953869, -46.449436])
+                .bindPopup('<h4>Vila Nova Mariana</h4>')
+                .openPopup(),
+
+            //Vila Votoruá
+            L.marker([-23.958328, -46.368117])
+                .bindPopup('<h4>Vila Votoruá</h4>')
+                .openPopup(),
+
+            //Vila Sao Jorge
+            L.marker([-23.955151, -46.371733])
+                .bindPopup('<h4>Vila São Jorge</h4>')
+                .openPopup()
+        ];
+
+        var layerGroup = L.layerGroup(marcadoresDeBairro);
+        var allLayers = L.layerGroup([camadaMapa, layerGroup]);
+        allLayers.addTo(map);
+
+        // Loader Json
+
+        fetch('escola.json')
+            .then(resposta => resposta.json())
+            .then(json => carregaElementosNaPaginaEscolas(json));
+        // axios('bairro.json')
+        //   .then(resposta => carregaElementosNaPagina(resposta.data));
+
+
+        function carregaElementosNaPaginaEscolas(json) {
+            const table = document.createElement('table');
+            for (let data of json) {
+                const tr = document.createElement('tr');
+                let td = document.createElement('td');
+
+                if (data.escola.value = null) {
+                    return false;
+                } else {
+                    td = document.createElement('td');
+                    td.innerHTML = `<h4 class="school-tittle">${data.escola} </h4>`;
+                    tr.appendChild(td);
+                }
+
+                td = document.createElement('td');
+                td.innerHTML = data.candidato;
+                tr.appendChild(td);
+
+                td = document.createElement('td');
+                td.innerHTML = data.votos;
+                tr.appendChild(td);
+
+
+                table.appendChild(tr);
+
+            }
+
+            const resultado = document.querySelector('.schools-result');
+            resultado.appendChild(table);
+        };
+
+
+        fetch('bairros.json')
+            .then(resposta => resposta.json())
+            .then(json => carregaElementosNaPaginaBairros(json));
+        // axios('bairro.json')
+        //   .then(resposta => carregaElementosNaPagina(resposta.data));
+
+
+        function carregaElementosNaPaginaBairros(json) {
+            const table = document.createElement('table');
+            for (let data of json) {
+                const tr = document.createElement('tr');
+                let td = document.createElement('td');
+
+
+                td = document.createElement('td');
+                td.innerHTML = `<h4 class="school-tittle">${data.bairro} </h4>`;
+                tr.appendChild(td);
+
+
+                td = document.createElement('td');
+                td.innerHTML = data.candidato;
+                tr.appendChild(td);
+
+                td = document.createElement('td');
+                td.innerHTML = data.votos;
+                tr.appendChild(td);
+
+
+                table.appendChild(tr);
+
+            }
+
+            const resultado = document.querySelector('.neighborhood-result');
+            resultado.appendChild(table);
+        };
+
+        var marcadores2020 = [
+    //São Vicente
+    L.marker([-23.965519, -46.386695])
+      .bindPopup('<h4>São Vicente: </h4><p>Total de votos: 361940 </p>')
+      .openPopup(),
+
+    //Vila Margarida
+    L.marker([-23.964516, -46.403999])
+      .bindPopup('<h4>Vila Margarida</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+      .openPopup(),
+
+
+    //Rio Branco
+    L.marker([-23.979166, -46.479497])
+      .bindPopup('<h4>Rio Branco</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:4734<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3394 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1956</p>')
+      .openPopup(),
+
+    //Parque das bandeiras
+    L.marker([-23.983594, -46.498116])
+      .bindPopup('<h4>Parque das Bandeiras</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1960<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1602 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 822</p>')
+      .openPopup(),
+
+    //Itararé
+    L.marker([-23.966474, -46.363181])
+      .bindPopup('<h4>Itararé</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos:1270<br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 806 <br> SOLANGE CRISTINA DE FREITAS<br> Votos: 804</p>')
+      .openPopup(),
+
+    //Catipoã
+    L.marker([-23.956808, -46.387601])
+      .bindPopup('<h4>Catipoã</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:3488<br>KAYO FELYPE NACHTAJLER AMADO  <br> Votos: 2657 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1557</p>')
+      .openPopup(),
+
+    //Cidade Naútica
+    L.marker([-23.941938, -46.389483])
+      .bindPopup('<h4>Cidade Naútica</h4><p> KAYO FELYPE NACHTAJLER AMADO<br> Votos:2873<br> SOLANGE CRISTINA DE FREITAS  <br> Votos: 2818 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1145</p>')
+      .openPopup(),
+
+    //Jockey clube
+    L.marker([-23.943988, -46.395548])
+      .bindPopup('<h4>Jockey Clube</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:5827<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 4359 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1998</p>')
+      .openPopup(),
+
+    //Centro
+    L.marker([-23.966096, -46.386634])
+      .bindPopup('<h4>Centro</h4><p>KAYO FELYPE NACHTAJLER AMADO <br> Votos:4175 <br>SOLANGE CRISTINA DE FREITAS <br> Votos: 3219 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2538</p>')
+      .openPopup(),
+
+    //Gonzaguinha
+    L.marker([-23.970453, -46.384726])
+      .bindPopup('<h4>Gonzaguinha</h4><p>  KAYO FELYPE NACHTAJLER AMADO<br> Votos:352 <br>SOLANGE CRISTINA DE FREITAS <br> Votos: 226 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 190</p>')
+      .openPopup(),
+
+    //Humaitá
+    L.marker([-23.944540, -46.454882])
+      .bindPopup('<h4>Humaitá</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:4283<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 2489 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2043</p>')
+      .openPopup(),
+
+    //Samaritá
+    L.marker([-23.993088, -46.472956])
+      .bindPopup('<h4>Samaritá</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1144<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 717 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 116</p>')
+      .openPopup(),
+
+    // //Vila ema
+    // L.marker([-23.996231, -46.488980])
+    //   .bindPopup('<h4>Vila Ema</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+    //   .openPopup(),
+
+    //Vila Nova São Vicente
+    L.marker([-23.988339, -46.489504])
+      .bindPopup('<h4>Vila Nova São Vicente</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:862<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 776 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 326</p>')
+      .openPopup(),
+
+    //Vila Ponte Nova
+    L.marker([-23.983501, -46.457662])
+      .bindPopup('<h4>Vila Ponte Nova</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:3246<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1285 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1258</p>')
+      .openPopup(),
+
+    //Boa Vista
+    L.marker([-23.969477402553863, -46.37284753503019])
+      .bindPopup('<h4>Boa Vista</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos:2342<br> SOLANGE CRISTINA DE FREITAS<br> Votos: 1433 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1196</p>')
+      .openPopup(),
+
+    // //Jardim Guaçu
+    // L.marker([-23.951114, -46.379366])
+    //   .bindPopup('')
+    //   .openPopup(),
+
+    //Jardim Guaçu
+    L.marker([-23.969409, -46.408372])
+      .bindPopup('<h4>Jardim Guaçu</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1122<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1035 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 489</p>')
+      .openPopup(),
+
+    //Jardim independência
+    L.marker([-23.969409, -46.408372])
+      .bindPopup('<h4>Jardim independência</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 1742<br> SOLANGE CRISTINA DE FREITAS <br> Votos: 1208 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 747</p>')
+      .openPopup(),
+
+    //Parque das Bandeiras
+    L.marker([-23.982142897400713, -46.49845911033251])
+      .bindPopup('<h4>Parque das bandeiras</h4><p> SOLANGE CRISTINA DE FREITAS<br> Votos: 1960<br> KAYO FELYPE NACHTAJLER AMADO  <br> Votos: 1602 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 747</p>')
+      .openPopup(),
+
+    // //Jardim irmã dolores
+    // L.marker([-23.971633, -46.446140])
+    //   .bindPopup('<h4>Jardim Irmã Dolores</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+    //   .openPopup(),
+
+    //Parque São Vicente
+    L.marker([-23.971633, -46.446140])
+      .bindPopup('<h4>Parque São Vicente</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:3750<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3373 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 822</p>')
+      .openPopup(),
+
+    //Parque Bitaru
+    L.marker([-23.96749782071182, -46.39612846406507])
+      .bindPopup('<h4>Parque Bitaru</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:3581<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3056 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1904</p>')
+      .openPopup(),
+
+    //Vila Mateo Bei
+    L.marker([-23.965041083182378, -46.40973234582089])
+      .bindPopup('<h4>Vila Mateo Bei</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1665<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1421 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 709</p>')
+      .openPopup(),
+
+    //Parque Continental
+    L.marker([-23.955022, -46.457445])
+      .bindPopup('<h4>Parque Continental</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1603<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1060 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 777</p>')
+      .openPopup(),
+
+    //Vila Nossa Sra. de Fatima
+    L.marker([-23.940555955003468, -46.41766604706549])
+      .bindPopup('<h4>Vila Nossa Sra. de Fatima</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:2015<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1602 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 802</p>')
+      .openPopup(),
+
+    //Conjunto Tancredo Neves
+    L.marker([-23.950920, -46.405044])
+      .bindPopup('<h4>Conjunto Tancredo Neves</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1629<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1384 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 561</p>')
+      .openPopup(),
+
+    //Vila Cascatinha
+    L.marker([-23.956978, -46.379668])
+      .bindPopup('<h4>Vila Cascatinha</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos:1165<br> SOLANGE CRISTINA DE FREITAS <br> Votos: 1076 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 527</p>')
+      .openPopup(),
+
+    //Jardim Independencia
+    L.marker([-23.96288712164235, -46.37155729877702])
+      .bindPopup('<h4>Jardim Independencia</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos:1742<br> SOLANGE CRISTINA DE FREITAS <br> Votos: 1208 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 747</p>')
+      .openPopup(),
+
+    // //Vila Nova Mariana
+    // L.marker([-23.953869, -46.449436])
+    //   .bindPopup('<h4>Vila Nova Mariana</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+    //   .openPopup(),
+
+    //Vila Votoruá
+    L.marker([-23.958328, -46.368117])
+      .bindPopup('<h4>Vila Votoruá</h4><p> KAYO FELYPE NACHTAJLER AMADO<br> Votos:306<br> SOLANGE CRISTINA DE FREITAS <br> Votos: 226 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 160</p>')
+      .openPopup(),
+
+    //Vila Sao Jorge
+    L.marker([-23.955151, -46.371733])
+      .bindPopup('<h4>Vila São Jorge</h4><p>KAYO FELYPE NACHTAJLER AMADO <br> Votos:1222<br> SOLANGE CRISTINA DE FREITAS  <br> Votos: 975 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 595</p>')
+      .openPopup()
+  ];
+  var layerGroup = L.layerGroup(marcadores2020);
+  var allLayers = L.layerGroup([camadaMapa, layerGroup]);
+  allLayers.addTo(map);
+    </script>
+</body>
+
+</html>

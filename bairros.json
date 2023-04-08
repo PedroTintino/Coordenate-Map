@@ -1,0 +1,642 @@
+[
+    {
+        "bairro": "VILA MARGARIDA",
+        "votos": 33080,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 7766,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 3674,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 2861,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "JOCKEY CLUB",
+        "votos": 28508,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 5827,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 4359,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 1998,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "JARDIM RIO BRANCO",
+        "votos": 24382,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 4734,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 3394,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 1956,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "Centro",
+        "votos": 23508,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 4175,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 3219,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 2538,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "HUMAITÁ",
+        "votos": 21326,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 4283,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 2489,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 2043,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "PARQUE SÃO VICENTE",
+        "votos": 20734,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 3750,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 3373,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 1623,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "PARQUE BITARU",
+        "votos": 19980,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 3581,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 3056,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 1904,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "CATIAPOÃ",
+        "votos": 18072,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 3488,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 2657,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 1557,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "CIDADE NAUTICA",
+        "votos": 16090,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 2873,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 2818,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1145,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "VILA PONTE NOVA",
+        "votos": 13568,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 3246,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1285,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 1258,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "BOA VISTA",
+        "votos": 11720,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 2342,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 1433,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1196,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "VILA NOSSA SENHORA DE FÁTIMA",
+        "votos": 10616,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 2015,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1689,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 802,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "PARQUE DAS BANDEIRAS",
+        "votos": 10346,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1960,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1602,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 822,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "VILA MATEO BEI",
+        "votos": 8728,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1665,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1421,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 709,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "JARDIM INDEPENDENCIA",
+        "votos": 8586,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1742,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 1208,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 747,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "CONJUNTO TANCREDO NEVES",
+        "votos": 8328,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1629,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1384,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 561,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "PARQUE CONTINENTAL",
+        "votos": 8190,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1603,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1060,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 777,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "JARDIM POMPEBA",
+        "votos": 7190,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1379,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1165,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 485,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "itararé",
+        "votos": 6868,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1270,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 806,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "",
+        "votos": 804,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "Jardim Paraiso",
+        "votos": 6786,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1509,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 891,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 547,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "VILA SÃO JORGE",
+        "votos": 6568,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1222,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 975,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 595,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "VILA CASCATINHA",
+        "votos": 6482,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1165,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 1076,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 527,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "Jardim Guassu",
+        "votos": 6246,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1122,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 1035,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 489,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "SAMARITA",
+        "votos": 5274,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 1144,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 717,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 369,
+        "candidato": "VOTO NULO"
+    },
+    {
+        "bairro": "VILA NOSSA SENHORA DE FATIMA",
+        "votos": 4908,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 958,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 777,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 320,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "GLEBA II",
+        "votos": 4842,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 887,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 867,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 822,
+        "candidato": "THIAGO ALEXANDRE DA SILVA"
+    },
+    {
+        "bairro": "VILA NOVA SÃO VICENTE",
+        "votos": 4736,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 862,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 776,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 326,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "JAPUI",
+        "votos": 4658,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 804,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 771,
+        "candidato": "ANDERSON DE JESUS LAUREANO"
+    },
+    {
+        "bairro": "",
+        "votos": 764,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "VILA VALENÇA",
+        "votos": 3708,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 701,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 516,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 332,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "VILA MATIAS",
+        "votos": 2924,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 603,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 440,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 190,
+        "candidato": "VOTO NULO"
+    },
+    {
+        "bairro": "Gonzaguinha",
+        "votos": 1824,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 352,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 226,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 190,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    },
+    {
+        "bairro": "VILA VOTURUA",
+        "votos": 1672,
+        "candidato": ""
+    },
+    {
+        "bairro": "",
+        "votos": 306,
+        "candidato": "KAYO FELYPE NACHTAJLER AMADO"
+    },
+    {
+        "bairro": "",
+        "votos": 256,
+        "candidato": "SOLANGE CRISTINA DE FREITAS"
+    },
+    {
+        "bairro": "",
+        "votos": 160,
+        "candidato": "PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR"
+    }
+]

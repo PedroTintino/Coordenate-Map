@@ -1,105 +1,111 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   
+
 }
 
-body{
+body {
     background-color: black;
-    
+
 }
 
-h1{
+h1 {
     font-size: 16px;
     font-weight: bold;
     color: white;
 }
 
-.nav{
- display: flex;
- justify-content: space-between;
- align-items: center;
- margin: 3px 0 3px 0;   
- height: auto;
+h4 {
+    font-size: 12px;
 }
 
-.nav button{
-   background-color: black;
-   border: none;
-   font-size: 12px;
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3px 0 3px 0;
+    height: auto;
 }
 
-.dropdown-btn button{
+.nav button {
+    background-color: black;
+    border: none;
+    font-size: 12px;
+}
+
+.dropdown-btn button {
     font-size: 14px;
     padding: 0;
     margin-left: 3px;
 }
 
-#map{
-    width: 70%;
+#map {
+    width: 100%;
     height: 530px;
 
 }
 
-.map-container{
+.map-container {
     display: flex;
 }
 
-.dropdown-item{
+.dropdown-item {
     font-size: 12px;
 }
 
- /* .dropdown-item input{
+/* .dropdown-item input{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 } */
 
-.new-data-form{
+.new-data-form {
     display: none;
 }
 
-.new-data-form{
-   
+.new-data-form {
+
     margin: 5px auto;
     color: white;
     width: 30%;
     margin-left: 10px;
     border: 2px solid white;
-    
+
 }
 
-.new-data-form label,input{
+.new-data-form label,
+input {
     display: block;
     margin: 0 auto;
     text-align: center;
-    font-size: 22px ;
+    font-size: 22px;
     margin-top: 40px;
 }
 
-.new-data-form input{
+.new-data-form input {
     width: 80%;
-    margin-top: 20px;    
+    margin-top: 20px;
     margin-bottom: 40px;
-    margin-left: 40px;    
-    
+    margin-left: 40px;
+
 }
 
-.form-buttons{
+.form-buttons {
     margin-left: 15%;
     padding: 10px;
 }
 
-#send-btn{
+#send-btn {
     background-color: green;
 }
 
-#cancel-btn{
+#cancel-btn {
     background-color: red;
 }
 
-#send-btn, #cancel-btn{
+#send-btn,
+#cancel-btn {
     padding: 10px;
     border: none;
     border-radius: 2px;
@@ -109,14 +115,14 @@ h1{
     transition: all 200ms ease;
 }
 
-#send-btn:hover{
+#send-btn:hover {
     background-color: black;
     color: white;
     border: 3px solid green;
     border-radius: 2px;
 }
 
-#cancel-btn:hover{
+#cancel-btn:hover {
     background-color: black;
     color: white;
     border: 3px solid red;
@@ -124,18 +130,29 @@ h1{
 }
 
 
-footer{
+footer {
     padding: 1px;
     display: flex;
     color: white;
     justify-content: center;
 }
 
-.filter li,label,input{
+.filter li,
+label,
+input {
     margin: 0;
     display: flex;
 }
 
-.filter label{
+.filter label {
     margin-right: 5px;
+}
+
+.modal td {
+    padding: 10px;
+}
+
+.school-tittle {
+    font-weight: bold;
+
 }
