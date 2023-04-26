@@ -91,6 +91,16 @@ input {
 
 }
 
+.total-votos{
+    font-weight: bold;
+    color: azure;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+   
+}
+
 .form-buttons {
     margin-left: 15%;
     padding: 10px;
@@ -148,8 +158,16 @@ input {
     margin-right: 5px;
 }
 
+.modal table{
+margin: 0 auto;
+}
+
 .modal td {
-    padding: 10px;
+    padding: 1rem;
+}
+
+.modal th {
+    padding: 1rem;
 }
 
 .school-tittle {

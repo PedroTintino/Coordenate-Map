@@ -1,48 +1,48 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: black;
 }
 
-html{
-    font-family:'Courier New', Courier, monospace;
+html {
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.login-container{
+.login-container {
     border-radius: 2px;
     margin: 50px auto;
     height: 300px;
     width: 300px;
     background-color: aliceblue;
     padding: 5px;
-    
+
 }
 
-.login-container h2{
+.login-container h2 {
     text-align: center;
     margin-top: 20px;
 }
 
-.login-container form{
+.login-container form {
     position: relative;
     margin-left: 70px;
     margin-top: 30px;
 }
 
-.login-container form label{
-   display: block;
-   padding: 10px;
+.login-container form label {
+    display: block;
+    padding: 10px;
 }
 
-.login-container form input{
+.login-container form input {
     margin: 5px 0 0 0;
 }
 
-.login-container form button{
+.login-container form button {
     display: block;
     margin-left: 65px;
     margin-top: 20px;

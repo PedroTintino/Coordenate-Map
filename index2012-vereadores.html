@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>Mapa 2.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <div class="nav">
+        <h1>Meu Mapa Político</h1>
+        <div class="buttons">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                Selecione um ano
+            </button>
+            <ul class="dropdown-menu">
+                <li><h5 class="dropdown-header">Dados de 2012</h5></li>
+                <li><a class="dropdown-item" href="index2012.html">Prefeitos</a></li>
+                <li><a class="dropdown-item" href="index2012-vereadores.html">Vereadores</a></li>
+                <li><h5 class="dropdown-header">Dados de 2016</h5></li>
+                <li><a class="dropdown-item" href="index2016.html">Prefeitos</a></li>
+                <li><a class="dropdown-item" href="index2016-vereadores.html">Vereadores</a></li>
+                <li><h5 class="dropdown-header">Dados de 2020</h5></li>
+                <li><a class="dropdown-item" href="index2020.html">Prefeitos</a></li>
+                <li><a class="dropdown-item" href="index2020-vereadores.html">Vereadores</a></li>
+            </ul>
+            <a href="index.html"><button type="button" class="btn btn-primary btn-sm"
+                    onclick="avisoAdicionarinformacao()">Voltar para o
+                    Mapa
+                    de Previsões </button></a>
+
+          
+
+        </div>
+
+        <div class="dropdown">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                Dados Filtrados
+            </button>
+            <ul class="dropdown-menu">
+                <li><button type="button" id="neighborhood-btn" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#neighborhood-modal">Bairros</button></li>
+
+                <li> <button type="button" id="schools-btn" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#schools-modal">Colégios</button></li>
+            </ul>
+        </div>
+
+
+
+        <div class="modal" id="schools-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Dados Filtrados: Colégios</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+
+                    <div class="schools-result"></div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="neighborhood-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">Dados Filtrados: Bairros</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+
+                    <div class="neighborhood-result"></div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="total-votos">
+            <p>Total de votos em São Vicente: 207700</p>
+            </div>
+
+    </div>
+
+
+    <section class="map-container">
+        <div id="map"></div>
+        <form class="new-data-form">
+            <label>Referência/Local</label>
+            <input type="text" id="input-ref" placeholder="Digite aqui o nome de referência deste marcador">
+            <label>Candidato</label>
+            <input type="text" id="input-candidato" placeholder="Nome do Candidato">
+            <label>Partido</label>
+            <input type="text" id="input-partido" placeholder="Nome do Partido">
+            <label>Votos</label>
+            <input type="number" id="input-votos" placeholder="Votos (apenas números)">
+            <div class="form-buttons">
+                <button id="send-btn" type="submit" onclick="atualizarDescricao()">Salvar</button>
+                <button id="cancel-btn" type="reset">Fechar</button>
+            </div>
+        </form>
+    </section>
+    <footer>
+        <p>Todos os direitos reservados ©C3I Tecnologia 2023.</p>
+    </footer>
+
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+
+        const map = L.map('map').setView([-23.961158, -46.396557], 12);
+
+
+        var camadaMapa = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
+        });
+
+        var marcadoresDeBairro = [
+         
+
+            L.marker([-23.983613, -46.388037])
+                .bindPopup('Japuí')
+                .openPopup(),
+
+            //São Vicente
+            L.marker([-23.965519, -46.386695])
+                .bindPopup('<h4>São Vicente: </h4>')
+                .openPopup(),
+
+            //Vila Margarida
+            L.marker([-23.964516, -46.403999])
+                .bindPopup('<h4>Vila Margarida</h4>')
+                .openPopup(),
+
+
+            //Rio Branco
+            L.marker([-23.979166, -46.479497])
+                .bindPopup('<h4>Rio Branco</h4>')
+                .openPopup(),
+
+
+            //Itararé
+            L.marker([-23.966474, -46.363181])
+                .bindPopup('<h4>Itararé</h4>')
+                .openPopup(),
+
+            //Catipoã
+            L.marker([-23.956808, -46.387601])
+                .bindPopup('<h4>Catipoã</h4>')
+                .openPopup(),
+
+            //Cidade Naútica
+            L.marker([-23.941938, -46.389483])
+                .bindPopup('<h4>Cidade Naútica</h4>')
+                .openPopup(),
+
+            //Jockey clube
+            L.marker([-23.943988, -46.395548])
+                .bindPopup('<h4>Jockey Clube</h4>')
+                .openPopup(),
+
+            //Centro
+            L.marker([-23.966096, -46.386634])
+                .bindPopup('<h4>Centro</h4>')
+                .openPopup(),
+
+            //Gonzaguinha
+            L.marker([-23.970453, -46.384726])
+                .bindPopup('<h4>Gonzaguinha</h4>')
+                .openPopup(),
+
+            //Humaitá
+            L.marker([-23.944540, -46.454882])
+                .bindPopup('<h4>Humaitá</h4>')
+                .openPopup(),
+
+            //Samaritá
+            L.marker([-23.993088, -46.472956])
+                .bindPopup('<h4>Samaritá</h4>')
+                .openPopup(),
+
+            //Vila ema
+            L.marker([-23.996231, -46.488980])
+                .bindPopup('<h4>Vila Ema</h4>')
+                .openPopup(),
+
+            //Vila Nova São Vicente
+            L.marker([-23.988339, -46.489504])
+                .bindPopup('<h4>Parque das Bandeiras</h4>')
+                .openPopup(),
+
+            //Vila Nova São Vicente
+            L.marker([-23.968791, -46.396815])
+                .bindPopup('')
+                .openPopup(),
+
+
+            //Jardim Guaçu
+            L.marker([-23.969409, -46.408372])
+                .bindPopup('<h4>Jardim Guaçu</h4>')
+                .openPopup(),
+
+            //Jardim independência
+            L.marker([-23.969409, -46.408372])
+                .bindPopup('<h4>Jardim independência</h4>')
+                .openPopup(),
+
+            //Jardim irmã dolores
+            L.marker([-23.971633, -46.446140])
+                .bindPopup('<h4>Jardim Irmã Dolores</h4>')
+                .openPopup(),
+
+            //Parque Continental
+            L.marker([-23.955022, -46.457445])
+                .bindPopup('<h4>Parque Continental</h4>')
+                .openPopup(),
+
+            //Vila Nossa Sra. de Fatima
+            L.marker([-23.950920, -46.405044])
+                .bindPopup('<h4>Vila Nossa Sra. de Fatima</h4>')
+                .openPopup(),
+
+            //Vila Nossa Sra. de Fatima
+            L.marker([-23.956978, -46.379668])
+                .bindPopup('<h4>Vila Cascatinha</h4>')
+                .openPopup(),
+
+            //Vila Nova Mariana
+            L.marker([-23.953869, -46.449436])
+                .bindPopup('<h4>Vila Nova Mariana</h4>')
+                .openPopup(),
+
+            //Vila Votoruá
+            L.marker([-23.958328, -46.368117])
+                .bindPopup('<h4>Vila Votoruá</h4>')
+                .openPopup(),
+
+            //Vila Sao Jorge
+            L.marker([-23.955151, -46.371733])
+                .bindPopup('<h4>Vila São Jorge</h4>')
+                .openPopup()
+        ];
+
+        var layerGroup = L.layerGroup(marcadoresDeBairro);
+        var allLayers = L.layerGroup([camadaMapa, layerGroup]);
+        allLayers.addTo(map);
+
+        // Loader Json
+
+        fetch('JSON archives/2012/escolas.json')
+            .then(resposta => resposta.json())
+            .then(json => carregaElementosNaPaginaEscolas(json));
+        // axios('bairro.json')
+        //   .then(resposta => carregaElementosNaPagina(resposta.data));
+
+
+        function carregaElementosNaPaginaEscolas(json) {
+            const table = document.createElement('table');
+            for (let data of json) {
+                const tr = document.createElement('tr');
+                let td = document.createElement('td');
+
+                if (data.escola.value = null) {
+                    return false;
+                } else {
+                    td = document.createElement('td');
+                    td.innerHTML = `<h4 class="school-tittle">${data.escola} </h4>`;
+                    tr.appendChild(td);
+                }
+
+                td = document.createElement('td');
+                td.innerHTML = data.candidato;
+                tr.appendChild(td);
+
+                td = document.createElement('td');
+                td.innerHTML = data.votos;
+                tr.appendChild(td);
+
+
+                table.appendChild(tr);
+
+            }
+
+            const resultado = document.querySelector('.schools-result');
+            resultado.appendChild(table);
+        };
+
+
+        fetch('JSON archives/2012/bairros.json')
+            .then(resposta => resposta.json())
+            .then(json => carregaElementosNaPaginaBairros(json));
+        // axios('bairro.json')
+        //   .then(resposta => carregaElementosNaPagina(resposta.data));
+
+
+        function carregaElementosNaPaginaBairros(json) {
+            const table = document.createElement('table');
+            for (let data of json) {
+                const tr = document.createElement('tr');
+                let td = document.createElement('td');
+
+
+                td = document.createElement('td');
+                td.innerHTML = `<h4 class="school-tittle">${data.bairros} </h4>`;
+                tr.appendChild(td);
+
+
+                td = document.createElement('td');
+                td.innerHTML = data.candidato;
+                tr.appendChild(td);
+
+                td = document.createElement('td');
+                td.innerHTML = data.votos;
+                tr.appendChild(td);
+
+
+                table.appendChild(tr);
+
+            }
+
+            const resultado = document.querySelector('.neighborhood-result');
+            resultado.appendChild(table);
+        };
+
+        var marcadores2012 = [
+    //Japuí
+    L.marker([-23.983613, -46.388037])
+                .bindPopup('<h4>Japuí</h4><p>BILI<br> Votos: 1564<br>CAIO FRANÇA<br> Votos: 1317<br>DERCINHO NEGÃO DO CAMINHÃO<br> Votos: 601</p>')
+                .openPopup(),
+
+    //São Vicente
+    L.marker([-23.965519, -46.386695])
+      .bindPopup('<h4>São Vicente: </h4><p>Total de votos: 415369</p>')
+      .openPopup(),
+
+    //Vila Margarida
+    L.marker([-23.964516, -46.403999])
+      .bindPopup('<h4>Vila Margarida</h4>BILI<p><br>Votos: 8840<br>CAIO FRANÇA<br> Votos: 8281<br> VOTO BRANCO<br> Votos: 2125</p>')
+      .openPopup(),
+
+
+    //Rio Branco
+    L.marker([-23.979166, -46.479497])
+      .bindPopup('<h4>Rio Branco</h4>BILI<p><br> Votos:5414<br>CAIO FRANÇA<br> Votos: 4333<br> VOTO BRANCO <br> Votos: 1157</p>')
+      .openPopup(),
+
+    //Parque das bandeiras
+    L.marker([-23.983594, -46.498116])
+      .bindPopup('<h4>Parque das Bandeiras</h4><p>BILI<br>Votos:3720<br>CAIO FRANÇA<br> Votos: 1479<br> JABÁ<br> Votos: 695</p>')
+      .openPopup(),
+
+    //Itararé
+    L.marker([-23.966474, -46.363181])
+      .bindPopup('<h4>Itararé</h4><p>CAIO FRANÇA<br> Votos:1527<br>BILI<br> Votos: 1174<br>VOTO NULO<br> Votos: 734</p>')
+      .openPopup(),
+
+    //Catipoã
+    L.marker([-23.956808, -46.387601])
+      .bindPopup('<h4>Catipoã</h4><p>CAIO FRANÇA<br> Votos:4800<br>KAYOBILI<br> Votos: 4637<br> VOTO NULO<br> Votos: 1345<br></p>')
+      .openPopup(),
+
+    //Cidade Naútica
+    L.marker([-23.941938, -46.389483])
+      .bindPopup('<h4>Cidade Naútica</h4><p>BILI<br> Votos:4339<br>CAIO FRANÇA<br> Votos: 3338<br> VOTO NULO<br> Votos: 1107</p>')
+      .openPopup(),
+
+    //Jockey clube
+    L.marker([-23.943988, -46.395548])
+      .bindPopup('<h4>Jockey Clube</h4><p>BILI<br> Votos:7559<br>CAIO FRANÇA<br> Votos: 6743<br>FERNANDO BISPO<br> Votos: 1681</p>')
+      .openPopup(),
+
+    //Centro
+    L.marker([-23.966096, -46.386634])
+      .bindPopup('<h4>Centro</h4><p>BILI<br> Votos:6884<br>BILI<br>Votos: 5728<br>VOTO NULO<br> Votos: 2687</p>')
+      .openPopup(),
+
+    //Gonzaguinha
+    L.marker([-23.970453, -46.384726])
+      .bindPopup('<h4>Gonzaguinha</h4><p>CAIO FRANÇA <br> Votos:629<br>BILI<br> Votos: 470<br> VOTO NULO<br> Votos: 279</p>')
+      .openPopup(),
+
+    //Humaitá
+    L.marker([-23.944540, -46.454882])
+      .bindPopup('<h4>Humaitá</h4><p>BILI<br> Votos:6224<br>CAIO FRANÇA<br> Votos: 4746<br>PERIVALDO DO GÁS<br> Votos: 2040</p>')
+      .openPopup(),
+
+    //Samaritá
+    L.marker([-23.993088, -46.472956])
+      .bindPopup('<h4>Samaritá</h4><p>BILI<br> Votos:1373<br>CAIO FRANÇA<br> Votos: 646<br>VOTO BRANCO<br> Votos: 259</p>')
+      .openPopup(),
+
+    // //Vila ema
+    // L.marker([-23.996231, -46.488980])
+    //   .bindPopup('<h4>Vila Ema</h4><p>CAIO FRANÇA<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+    //   .openPopup(),
+
+    //Vila Nova São Vicente
+    L.marker([-23.988339, -46.489504])
+      .bindPopup('<h4>Vila Nova São Vicente</h4><p>BILI<br> Votos:1341<br>CAIO FRANÇA<br> Votos: 646<br> VOTO NULO<br> Votos: 208</p>')
+      .openPopup(),
+
+    //Vila Ponte Nova
+    L.marker([-23.983501, -46.457662])
+      .bindPopup('<h4>Vila Ponte Nova</h4><p>BILI<br> Votos:3081<br>CAIO FRANÇA<br> Votos: 2220<br> VOTO BRANCO<br> Votos: 635</p>')
+      .openPopup(),
+
+    //Boa Vista
+    // L.marker([-23.969477402553863, -46.37284753503019])
+    //   .bindPopup('<h4>Boa Vista</h4><p>CAIO FRANÇA<br> Votos:1391<br>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 1027 <br>VOTO NULO<br> Votos: 655</p>')
+    //   .openPopup(),
+
+    // //Jardim Guaçu
+    // L.marker([-23.951114, -46.379366])
+    //   .bindPopup('')
+    //   .openPopup(),
+
+    //Jardim Guaçu
+    L.marker([-23.969409, -46.408372])
+      .bindPopup('<h4>Jardim Guaçu</h4><p>CAIO FRANÇA<br> Votos:1910<br>BILI<br> Votos: 1729<br>VOTO NULO<br> Votos: 689</p>')
+      .openPopup(),
+
+    //Jardim independência
+    L.marker([-23.969409, -46.408372])
+      .bindPopup('<h4>Jardim independência</h4><p>CAIO FRANÇA <br> Votos: 2662<br>BILI<br> Votos: 2093<br>PAULINHO ALFAIATE<br> Votos: 1099</p>')
+      .openPopup(),
+
+    // //Jardim irmã dolores
+    // L.marker([-23.971633, -46.446140])
+    //   .bindPopup('<h4>Jardim Irmã Dolores</h4><p>CAIO FRANÇA<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+    //   .openPopup(),
+
+    //Parque São Vicente
+    L.marker([-23.971633, -46.446140])
+      .bindPopup('<h4>Parque São Vicente</h4><p>CAIO FRANÇA<br> Votos:5950<br>BILI<br> Votos: 5825<br> VOTO NULO<br> Votos: 1825</p>')
+      .openPopup(),
+
+    //Parque Bitaru
+    L.marker([-23.96749782071182, -46.39612846406507])
+      .bindPopup('<h4>Parque Bitaru</h4><p>CAIO FRANÇA<br> Votos:5935<br>BILI<br> Votos: 5726<br>VOTO NULO<br> Votos: 1685</p>')
+      .openPopup(),
+
+    //Vila Mateo Bei
+    L.marker([-23.965041083182378, -46.40973234582089])
+      .bindPopup('<h4>Vila Mateo Bei</h4><p>BILI<br> Votos:2147<br>CAIO FRANÇA<br> Votos: 1884<br>VOTO BRANCO<br> Votos: 504</p>')
+      .openPopup(),
+
+    //Parque Continental
+    L.marker([-23.955022, -46.457445])
+      .bindPopup('<h4>Parque Continental</h4><p>BILI<br> Votos:1905<br> CAIO FRANÇA<br> Votos: 1484<br>PERIVALDO DO GÁS<br> Votos: 623</p>')
+      .openPopup(),
+
+    //Vila Nossa Sra. de Fatima
+    L.marker([-23.940555955003468, -46.41766604706549])
+      .bindPopup('<h4>Vila Nossa Sra. de Fatima</h4><p>BILI<br> Votos:1422<br>CAIO FRANÇA<br> Votos: 1243<br>VOTO NULO<br> Votos: 389</p>')
+      .openPopup(),
+
+    //Conjunto Tancredo Neves
+    L.marker([-23.950920, -46.405044])
+      .bindPopup('<h4>Conjunto Tancredo Neves</h4><p>BILI<br> Votos:2057<br>CAIO FRANÇA<br> Votos: 1774<br>VOTO NULO<br> Votos: 473</p>')
+      .openPopup(),
+
+    //Vila Cascatinha
+    L.marker([-23.956978, -46.379668])
+      .bindPopup('<h4>Vila Cascatinha</h4><p>CAIO FRANÇA <br> Votos:1364<br>BILI<br> Votos: 1247<br>VOTO NULO<br> Votos: 472</p>')
+      .openPopup(),
+
+    // //Jardim Independencia
+    // L.marker([-23.96288712164235, -46.37155729877702])
+    //   .bindPopup('<h4>Jardim Independencia</h4><p>CAIO FRANÇA<br> Votos: 1763<br>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 1437<br>PAULO HUMBERTO LACERDAbr> Votos: 948</p>')
+    //   .openPopup(),
+
+    // //Vila Nova Mariana
+    // L.marker([-23.953869, -46.449436])
+    //   .bindPopup('<h4>Vila Nova Mariana</h4><p>CAIO FRANÇA<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+    //   .openPopup(),
+
+    //Vila Votoruá
+    L.marker([-23.958328, -46.368117])
+      .bindPopup('<h4>Vila Votoruá</h4><p> CAIO FRANÇA<br>Votos:476<br>BILI<br> Votos: 372<br> PAULINHO ALFAIATE<br> Votos: 227</p>')
+      .openPopup(),
+
+    //Vila Sao Jorge
+    L.marker([-23.955151, -46.371733])
+      .bindPopup('<h4>Vila São Jorge</h4><p>CAIO FRANÇA<br> Votos:1802<br>BILI<br> Votos: 1316<br>VOTO NULO<br> Votos: 577</p>')
+      .openPopup()
+  ];
+  var layerGroup = L.layerGroup(marcadores2012);
+  var allLayers = L.layerGroup([camadaMapa, layerGroup]);
+  allLayers.addTo(map);
+    </script>
+</body>
+
+</html>

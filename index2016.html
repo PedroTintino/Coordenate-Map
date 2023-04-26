@@ -23,7 +23,7 @@
         <h1>Meu Mapa Político</h1>
         <div class="buttons">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                Selecione um Ano
+                Selecione um ano
             </button>
             <ul class="dropdown-menu">
                 <li><h5 class="dropdown-header">Dados de 2012</h5></li>
@@ -37,7 +37,12 @@
                 <li><a class="dropdown-item" href="index2020-vereadores.html">Vereadores</a></li>
             </ul>
             <a href="index.html"><button type="button" class="btn btn-primary btn-sm"
-                    onclick="avisoAdicionarinformacao()">Voltar para o Mapa de Previsões</button></a>
+                    onclick="avisoAdicionarinformacao()">Voltar para o
+                    Mapa
+                    de Previsões </button></a>
+
+          
+
         </div>
 
         <div class="dropdown">
@@ -46,7 +51,7 @@
             </button>
             <ul class="dropdown-menu">               
                     <li><button type="button" id="firstone-btn" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#firstone-modal">SOLANGE CRISTINA DE FREITAS
+                        data-bs-target="#firstone-modal">PEDRO LUIS DE FREITAS GOUVÊA JÚNIOR 
                     </button></li>
 
                 
@@ -55,74 +60,73 @@
                     </button></li>
                 
                     <li> <button type="button" id="thirdone-btn" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#thirdone-modal">PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR
+                        data-bs-target="#thirdone-modal">NICOLINO BOZZELLA JÚNIOR
+
                     </button></li>
             </ul>
         </div>
 
 
+
+        <div class="modal" id="firstone-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">PEDRO LUIS DE FREITAS GOUVÊA JÚNIOR | <strong>TOTAL: 87365</strong>
+                        </button></li></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+
+                    <div class="firstone-result"></div>
+
+
+                </div>
+            </div>
+        </div>
+       
+        <div class="modal" id="secondone-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">KAYO FELYPE NACHTAJLER AMADO | <strong>TOTAL: 48641</strong></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+
+                    <div class="secondone-result"></div>
+
+
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal" id="thirdone-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">NICOLINO BOZZELLA JÚNIOR | <strong>TOTAL: 12661</strong></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+
+                    <div class="thirdone-result"></div>
+
+
+                </div>
+            </div>
+        </div>
+
+
         <div class="total-votos">
-            <p>Total de votos em São Vicente: 105017 </p>
-            <p>Total das Cadeiras: 158405</p>
+            <p>Total de votos em São Vicente: 201044</p>
             </div>
-
-
-
-            <div class="modal" id="firstone-modal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-    
-    
-                        <div class="modal-header">
-                            <h4 class="modal-title">SOLANGE CRISTINA DE FREITAS | <strong>TOTAL: 67558</strong>
-                            </button></li></h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-    
-    
-                        <div class="firstone-result"></div>
-    
-    
-                    </div>
-                </div>
-            </div>
-           
-            <div class="modal" id="secondone-modal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-    
-    
-                        <div class="modal-header">
-                            <h4 class="modal-title">KAYO FELYPE NACHTAJLER AMADO | <strong>TOTAL: 30717</strong></h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-    
-    
-                        <div class="secondone-result"></div>
-    
-    
-                    </div>
-                </div>
-            </div>
-        
-            <div class="modal" id="thirdone-modal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-    
-    
-                        <div class="modal-header">
-                            <h4 class="modal-title">PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR | <strong>TOTAL: 12661</strong></h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-    
-    
-                        <div class="thirdone-result"></div>
-    
-    
-                    </div>
-                </div>
-            </div>
-    
 
     </div>
 
@@ -305,23 +309,7 @@
         var allLayers = L.layerGroup([camadaMapa, layerGroup]);
         allLayers.addTo(map);
 
-
-        //Zonas eleitorais
-
-        var marcadoresDeZona = [
-        L.marker([-23.96894056396401, -46.386882575037404])
-            .bindPopup('<h5><strong>Zona 1(117)</strong></h5><br><h5>Total Votos: 75953</h5>')
-            .openPopup(),
-
-        L.marker([-23.964486350412447, -46.382906916377635])
-            .bindPopup('<h4>Zona 2(340)</h4>')
-            .openPopup()
-        ];
-        var layerGroupTwo = L.layerGroup(marcadoresDeZona);
-        var allLayersTwo = L.layerGroup([camadaMapa, layerGroupTwo]);
-        allLayersTwo.addTo(map);
-
-        // Loader Json
+    
 
         fetch('JSON archives/2016/pedro.json')
             .then(resposta => resposta.json())
@@ -509,87 +497,95 @@
             const resultado = document.querySelector('.thirdone-result');
             resultado.appendChild(table);
         };
+       
+       
+  
 
-        var marcadores2020 = [
+        var marcadores2016 = [
+    //Japuí
+    L.marker([-23.983613, -46.388037])
+                .bindPopup('<h4>Japuí</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos: 1365<br> ANDERSON DE JESUS LAUREANO<br> Votos: 991<br>  KAYO FELYPE NACHTAJLER AMADO  <br> Votos: 802</p>')
+                .openPopup(),
+
     //São Vicente
     L.marker([-23.965519, -46.386695])
-      .bindPopup('<h4>São Vicente: </h4><p>Total de votos: 361940 </p>')
+      .bindPopup('<h4>São Vicente: </h4><p>Total de votos: 402088 </p>')
       .openPopup(),
 
     //Vila Margarida
     L.marker([-23.964516, -46.403999])
-      .bindPopup('<h4>Vila Margarida</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+      .bindPopup('<h4>Vila Margarida</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos: 9759<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3474 <br> VOTO NULO <br> Votos: 2535</p>')
       .openPopup(),
 
 
     //Rio Branco
     L.marker([-23.979166, -46.479497])
-      .bindPopup('<h4>Rio Branco</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:4734<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3394 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1956</p>')
+      .bindPopup('<h4>Rio Branco</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:5743<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3456 <br> VOTO NULO <br> Votos: 1632</p>')
       .openPopup(),
 
     //Parque das bandeiras
     L.marker([-23.983594, -46.498116])
-      .bindPopup('<h4>Parque das Bandeiras</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1960<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1602 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 822</p>')
+      .bindPopup('<h4>Parque das Bandeiras</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:2654<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1461 <br> JOSEVAL RODRIGUES BEZERRA<br> Votos: 1247</p>')
       .openPopup(),
 
     //Itararé
     L.marker([-23.966474, -46.363181])
-      .bindPopup('<h4>Itararé</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos:1270<br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 806 <br> SOLANGE CRISTINA DE FREITAS<br> Votos: 804</p>')
+      .bindPopup('<h4>Itararé</h4><p>PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos:1542<br> KAYO FELYPE NACHTAJLER AMADO<br> Votos: 944 <br>VOTO NULO<br> Votos: 750</p>')
       .openPopup(),
 
     //Catipoã
     L.marker([-23.956808, -46.387601])
-      .bindPopup('<h4>Catipoã</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:3488<br>KAYO FELYPE NACHTAJLER AMADO  <br> Votos: 2657 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1557</p>')
+      .bindPopup('<h4>Catipoã</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:4891<br>KAYO FELYPE NACHTAJLER AMADO  <br> Votos: 2665 <br> VOTO NULO<br> Votos: 1702<br></p>')
       .openPopup(),
 
     //Cidade Naútica
     L.marker([-23.941938, -46.389483])
-      .bindPopup('<h4>Cidade Naútica</h4><p> KAYO FELYPE NACHTAJLER AMADO<br> Votos:2873<br> SOLANGE CRISTINA DE FREITAS  <br> Votos: 2818 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1145</p>')
+      .bindPopup('<h4>Cidade Naútica</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR <br> Votos:3413<br>KAYO FELYPE NACHTAJLER AMADO <br> Votos: 2644<br> VOTO NULO<br> Votos: 1535</p>')
       .openPopup(),
 
     //Jockey clube
     L.marker([-23.943988, -46.395548])
-      .bindPopup('<h4>Jockey Clube</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:5827<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 4359 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1998</p>')
+      .bindPopup('<h4>Jockey Clube</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:6103<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3941<br> VOTO NULO<br> Votos: 2367</p>')
       .openPopup(),
 
     //Centro
     L.marker([-23.966096, -46.386634])
-      .bindPopup('<h4>Centro</h4><p>KAYO FELYPE NACHTAJLER AMADO <br> Votos:4175 <br>SOLANGE CRISTINA DE FREITAS <br> Votos: 3219 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2538</p>')
+      .bindPopup('<h4>Centro</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR <br> Votos:6383 <br>KAYO FELYPE NACHTAJLER AMADO <br> Votos: 4206<br> VOTO NULO<br> Votos: 2872</p>')
       .openPopup(),
 
     //Gonzaguinha
     L.marker([-23.970453, -46.384726])
-      .bindPopup('<h4>Gonzaguinha</h4><p>  KAYO FELYPE NACHTAJLER AMADO<br> Votos:352 <br>SOLANGE CRISTINA DE FREITAS <br> Votos: 226 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 190</p>')
+      .bindPopup('<h4>Gonzaguinha</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR <br> Votos:494 <br>KAYO FELYPE NACHTAJLER AMADO <br> Votos: 282<br> VOTO NULO<br> Votos: 229</p>')
       .openPopup(),
 
     //Humaitá
     L.marker([-23.944540, -46.454882])
-      .bindPopup('<h4>Humaitá</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:4283<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 2489 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2043</p>')
+      .bindPopup('<h4>Humaitá</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:5600<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3456<br> VOTO NULO<br> Votos: 2167</p>')
       .openPopup(),
 
     //Samaritá
     L.marker([-23.993088, -46.472956])
-      .bindPopup('<h4>Samaritá</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1144<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 717 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 116</p>')
+      .bindPopup('<h4>Samaritá</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:1017<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 517 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 498</p>')
       .openPopup(),
 
     // //Vila ema
     // L.marker([-23.996231, -46.488980])
-    //   .bindPopup('<h4>Vila Ema</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+    //   .bindPopup('<h4>Vila Ema</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
     //   .openPopup(),
 
     //Vila Nova São Vicente
     L.marker([-23.988339, -46.489504])
-      .bindPopup('<h4>Vila Nova São Vicente</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:862<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 776 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 326</p>')
+      .bindPopup('<h4>Vila Nova São Vicente</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:994<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 620<br> VOTO NULO<br> Votos: 498</p>')
       .openPopup(),
 
     //Vila Ponte Nova
     L.marker([-23.983501, -46.457662])
-      .bindPopup('<h4>Vila Ponte Nova</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:3246<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1285 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1258</p>')
+      .bindPopup('<h4>Vila Ponte Nova</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:3288<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 851<br> VOTO NULO<br> Votos: 951</p>')
       .openPopup(),
 
     //Boa Vista
     L.marker([-23.969477402553863, -46.37284753503019])
-      .bindPopup('<h4>Boa Vista</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos:2342<br> SOLANGE CRISTINA DE FREITAS<br> Votos: 1433 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1196</p>')
+      .bindPopup('<h4>Boa Vista</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:1391<br>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 1027 <br>VOTO NULO<br> Votos: 655</p>')
       .openPopup(),
 
     // //Jardim Guaçu
@@ -599,80 +595,75 @@
 
     //Jardim Guaçu
     L.marker([-23.969409, -46.408372])
-      .bindPopup('<h4>Jardim Guaçu</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1122<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1035 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 489</p>')
+      .bindPopup('<h4>Jardim Guaçu</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:1632<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1028<br>VOTO NULO<br> Votos: 853</p>')
       .openPopup(),
 
     //Jardim independência
     L.marker([-23.969409, -46.408372])
-      .bindPopup('<h4>Jardim independência</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 1742<br> SOLANGE CRISTINA DE FREITAS <br> Votos: 1208 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 747</p>')
-      .openPopup(),
-
-    //Parque das Bandeiras
-    L.marker([-23.982142897400713, -46.49845911033251])
-      .bindPopup('<h4>Parque das bandeiras</h4><p> SOLANGE CRISTINA DE FREITAS<br> Votos: 1960<br> KAYO FELYPE NACHTAJLER AMADO  <br> Votos: 1602 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 747</p>')
+      .bindPopup('<h4>Jardim independência</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR <br> Votos: 1763<br>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 1437 <br> PAULA HUMBERTO LACERDA<br> Votos: 948</p>')
       .openPopup(),
 
     // //Jardim irmã dolores
     // L.marker([-23.971633, -46.446140])
-    //   .bindPopup('<h4>Jardim Irmã Dolores</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+    //   .bindPopup('<h4>Jardim Irmã Dolores</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
     //   .openPopup(),
 
     //Parque São Vicente
     L.marker([-23.971633, -46.446140])
-      .bindPopup('<h4>Parque São Vicente</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:3750<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3373 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 822</p>')
+      .bindPopup('<h4>Parque São Vicente</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:5197<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3456<br> VOTO NULO<br> Votos: 2276</p>')
       .openPopup(),
 
     //Parque Bitaru
     L.marker([-23.96749782071182, -46.39612846406507])
-      .bindPopup('<h4>Parque Bitaru</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:3581<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3056 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 1904</p>')
+      .bindPopup('<h4>Parque Bitaru</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:5265<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 2692<br>VOTO NULO<br> Votos: 1840</p>')
       .openPopup(),
 
     //Vila Mateo Bei
     L.marker([-23.965041083182378, -46.40973234582089])
-      .bindPopup('<h4>Vila Mateo Bei</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1665<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1421 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 709</p>')
+      .bindPopup('<h4>Vila Mateo Bei</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:2168<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1141 <br>VOTO NULO<br> Votos: 707</p>')
       .openPopup(),
 
     //Parque Continental
     L.marker([-23.955022, -46.457445])
-      .bindPopup('<h4>Parque Continental</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1603<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1060 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 777</p>')
+      .bindPopup('<h4>Parque Continental</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:1917<br> VOTO NULO<br> Votos: 788<br>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 748</p>')
       .openPopup(),
 
     //Vila Nossa Sra. de Fatima
     L.marker([-23.940555955003468, -46.41766604706549])
-      .bindPopup('<h4>Vila Nossa Sra. de Fatima</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:2015<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1602 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 802</p>')
+      .bindPopup('<h4>Vila Nossa Sra. de Fatima</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:1248<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 725<br>VOTO NULO<br> Votos: 530</p>')
       .openPopup(),
 
     //Conjunto Tancredo Neves
     L.marker([-23.950920, -46.405044])
-      .bindPopup('<h4>Conjunto Tancredo Neves</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:1629<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1384 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 561</p>')
+      .bindPopup('<h4>Conjunto Tancredo Neves</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:1763<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 1194<br>VOTO NULO<br> Votos: 716</p>')
       .openPopup(),
 
     //Vila Cascatinha
     L.marker([-23.956978, -46.379668])
-      .bindPopup('<h4>Vila Cascatinha</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos:1165<br> SOLANGE CRISTINA DE FREITAS <br> Votos: 1076 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 527</p>')
+      .bindPopup('<h4>Vila Cascatinha</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR <br> Votos:1146<br>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 928<br>VOTO NULO<br> Votos: 521</p>')
       .openPopup(),
 
     //Jardim Independencia
     L.marker([-23.96288712164235, -46.37155729877702])
-      .bindPopup('<h4>Jardim Independencia</h4><p>KAYO FELYPE NACHTAJLER AMADO<br> Votos:1742<br> SOLANGE CRISTINA DE FREITAS <br> Votos: 1208 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 747</p>')
+      .bindPopup('<h4>Jardim Independencia</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos: 1763<br>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 1437<br>PAULO HUMBERTO LACERDAbr> Votos: 948</p>')
       .openPopup(),
 
     // //Vila Nova Mariana
     // L.marker([-23.953869, -46.449436])
-    //   .bindPopup('<h4>Vila Nova Mariana</h4><p>SOLANGE CRISTINA DE FREITAS<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
+    //   .bindPopup('<h4>Vila Nova Mariana</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br> Votos:7766<br> KAYO FELYPE NACHTAJLER AMADO <br> Votos: 3674 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 2861</p>')
     //   .openPopup(),
 
     //Vila Votoruá
     L.marker([-23.958328, -46.368117])
-      .bindPopup('<h4>Vila Votoruá</h4><p> KAYO FELYPE NACHTAJLER AMADO<br> Votos:306<br> SOLANGE CRISTINA DE FREITAS <br> Votos: 226 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 160</p>')
+      .bindPopup('<h4>Vila Votoruá</h4><p> PEDRO LUIS FREITAS GOUVÊA JÚNIOR<br>Votos:326<br>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 250<br> PAULO HUMBERTO LACERDA<br> Votos: 222</p>')
       .openPopup(),
 
     //Vila Sao Jorge
     L.marker([-23.955151, -46.371733])
-      .bindPopup('<h4>Vila São Jorge</h4><p>KAYO FELYPE NACHTAJLER AMADO <br> Votos:1222<br> SOLANGE CRISTINA DE FREITAS  <br> Votos: 975 <br> PEDRO LUÍS DE FREITAS GOUVÊA JUNIOR<br> Votos: 595</p>')
+      .bindPopup('<h4>Vila São Jorge</h4><p>PEDRO LUIS FREITAS GOUVÊA JÚNIOR  <br> Votos:1391<br>KAYO FELYPE NACHTAJLER AMADO<br> Votos: 116<br>VOTO NULO<br> Votos: 724</p>')
       .openPopup()
   ];
-  var layerGroup = L.layerGroup(marcadores2020);
+  var layerGroup = L.layerGroup(marcadores2016);
   var allLayers = L.layerGroup([camadaMapa, layerGroup]);
   allLayers.addTo(map);
     </script>
