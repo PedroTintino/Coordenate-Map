@@ -62,7 +62,7 @@
 
 
         <div class="total-votos">
-            <p>Total de votos em São Vicente: 105017 </p>
+            <p>Total de votos em São Vicente: 180970</p>
             <p>Total das Cadeiras: 158405</p>
             </div>
 
@@ -323,7 +323,7 @@
 
         // Loader Json
 
-        fetch('JSON archives/2016/pedro.json')
+        fetch('JSON archives/2020/solange.json')
             .then(resposta => resposta.json())
             .then(json => carregaElementosNaPaginaBairros(json));
         // axios('bairro.json')
@@ -385,7 +385,7 @@
             resultado.appendChild(table);
         }
 
-        fetch('JSON archives/2016/kayo.json')
+        fetch('JSON archives/2020/kayo.json')
             .then(resposta => resposta.json())
             .then(json => carregaElementosNaPaginaBairrosDois(json));
         // axios('bairro.json')
@@ -448,7 +448,7 @@
         };
 
        
-        fetch('JSON archives/2016/nicolino.json')
+        fetch('JSON archives/2020/pedro.json')
             .then(resposta => resposta.json())
             .then(json => carregaElementosNaPaginaBairrosTres(json));
         // axios('bairro.json')

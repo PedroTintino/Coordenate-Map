@@ -47,49 +47,75 @@
 
         <div class="dropdown">
             <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-                Dados Filtrados
+                Candidatos Mais Votados
             </button>
-            <ul class="dropdown-menu">
-                <li><button type="button" id="neighborhood-btn" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#neighborhood-modal">Bairros</button></li>
+            <ul class="dropdown-menu">               
+                    <li><button type="button" id="firstone-btn" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#firstone-modal">FERNANDO BISPO
+                    </button></li>
 
-                <li> <button type="button" id="schools-btn" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#schools-modal">Colégios</button></li>
+                
+                    <li> <button type="button" id="secondone-btn" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#secondone-modal">PEDRO GOUVÊA
+                    </button></li>
+                
+                    <li> <button type="button" id="thirdone-btn" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#thirdone-modal">PAULINHO ALFAIATE
+
+                    </button></li>
             </ul>
         </div>
 
 
-
-        <div class="modal" id="schools-modal">
+        <div class="modal" id="firstone-modal">
             <div class="modal-dialog">
                 <div class="modal-content">
 
 
                     <div class="modal-header">
-                        <h4 class="modal-title">Dados Filtrados: Colégios</h4>
+                        <h4 class="modal-title">FERNANDO BISPO | <strong>TOTAL: 5435</strong>
+                        </button></li></h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
 
-                    <div class="schools-result"></div>
+                    <div class="firstone-result"></div>
 
 
                 </div>
             </div>
         </div>
-
-        <div class="modal" id="neighborhood-modal">
+       
+        <div class="modal" id="secondone-modal">
             <div class="modal-dialog">
                 <div class="modal-content">
 
 
                     <div class="modal-header">
-                        <h4 class="modal-title">Dados Filtrados: Bairros</h4>
+                        <h4 class="modal-title">PEDRO GOUVÊA  | <strong>TOTAL: 4506</strong></h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
 
-                    <div class="neighborhood-result"></div>
+                    <div class="secondone-result"></div>
+
+
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal" id="thirdone-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+
+                    <div class="modal-header">
+                        <h4 class="modal-title">PAULINHO ALFAIATE | <strong>TOTAL: 4169</strong></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+
+                    <div class="thirdone-result"></div>
 
 
                 </div>
@@ -265,48 +291,7 @@
         var allLayers = L.layerGroup([camadaMapa, layerGroup]);
         allLayers.addTo(map);
 
-        // Loader Json
-
-        fetch('JSON archives/2012/escolas.json')
-            .then(resposta => resposta.json())
-            .then(json => carregaElementosNaPaginaEscolas(json));
-        // axios('bairro.json')
-        //   .then(resposta => carregaElementosNaPagina(resposta.data));
-
-
-        function carregaElementosNaPaginaEscolas(json) {
-            const table = document.createElement('table');
-            for (let data of json) {
-                const tr = document.createElement('tr');
-                let td = document.createElement('td');
-
-                if (data.escola.value = null) {
-                    return false;
-                } else {
-                    td = document.createElement('td');
-                    td.innerHTML = `<h4 class="school-tittle">${data.escola} </h4>`;
-                    tr.appendChild(td);
-                }
-
-                td = document.createElement('td');
-                td.innerHTML = data.candidato;
-                tr.appendChild(td);
-
-                td = document.createElement('td');
-                td.innerHTML = data.votos;
-                tr.appendChild(td);
-
-
-                table.appendChild(tr);
-
-            }
-
-            const resultado = document.querySelector('.schools-result');
-            resultado.appendChild(table);
-        };
-
-
-        fetch('JSON archives/2012/bairros.json')
+        fetch('JSON archives/2012/fernando.json')
             .then(resposta => resposta.json())
             .then(json => carregaElementosNaPaginaBairros(json));
         // axios('bairro.json')
@@ -315,22 +300,48 @@
 
         function carregaElementosNaPaginaBairros(json) {
             const table = document.createElement('table');
+           // adiciona linha de cabeçalho com títulos das colunas
+            const headerRow = document.createElement('tr');
+            let th = document.createElement('th');
+            
+            th.innerHTML = "Votos";
+            headerRow.appendChild(th);
+            th = document.createElement('th');
+            
+            th.innerHTML = "Local de Votação";
+            headerRow.appendChild(th);
+            th = document.createElement('th');
+           
+            th.innerHTML = "Escola";
+            headerRow.appendChild(th);
+            th = document.createElement('th');
+            
+            th.innerHTML = "Bairro";
+            headerRow.appendChild(th);
+            table.appendChild(headerRow);
+            
+      
+            
             for (let data of json) {
                 const tr = document.createElement('tr');
                 let td = document.createElement('td');
-
-
+        
                 td = document.createElement('td');
-                td.innerHTML = `<h4 class="school-tittle">${data.bairros} </h4>`;
+                td.innerHTML = data.QT_VOTOS;
                 tr.appendChild(td);
 
 
                 td = document.createElement('td');
-                td.innerHTML = data.candidato;
+                td.innerHTML = data.NR_LOCAL_VOTACAO;
                 tr.appendChild(td);
+                
 
                 td = document.createElement('td');
-                td.innerHTML = data.votos;
+                td.innerHTML = data.ESCOLA;
+                tr.appendChild(td);
+               
+                td = document.createElement('td');
+                td.innerHTML = data.BAIRRO;
                 tr.appendChild(td);
 
 
@@ -338,10 +349,135 @@
 
             }
 
-            const resultado = document.querySelector('.neighborhood-result');
+            const resultado = document.querySelector('.firstone-result');
+            resultado.appendChild(table);
+        }
+
+        fetch('JSON archives/2012/pedro.json')
+            .then(resposta => resposta.json())
+            .then(json => carregaElementosNaPaginaBairrosDois(json));
+        // axios('bairro.json')
+        //   .then(resposta => carregaElementosNaPagina(resposta.data));
+
+
+        function carregaElementosNaPaginaBairrosDois(json) {
+            const table = document.createElement('table');
+           // adiciona linha de cabeçalho com títulos das colunas
+            const headerRow = document.createElement('tr');
+            let th = document.createElement('th');
+            
+            th.innerHTML = "Votos";
+            headerRow.appendChild(th);
+            th = document.createElement('th');
+            
+            th.innerHTML = "Local de Votação";
+            headerRow.appendChild(th);
+            th = document.createElement('th');
+           
+            th.innerHTML = "Escola";
+            headerRow.appendChild(th);
+            th = document.createElement('th');
+            
+            th.innerHTML = "Bairro";
+            headerRow.appendChild(th);
+            table.appendChild(headerRow);
+            
+      
+            
+            for (let data of json) {
+                const tr = document.createElement('tr');
+                let td = document.createElement('td');
+        
+                td = document.createElement('td');
+                td.innerHTML = data.QT_VOTOS;
+                tr.appendChild(td);
+
+
+                td = document.createElement('td');
+                td.innerHTML = data.NR_LOCAL_VOTACAO;
+                tr.appendChild(td);
+                
+
+                td = document.createElement('td');
+                td.innerHTML = data.ESCOLA;
+                tr.appendChild(td);
+               
+                td = document.createElement('td');
+                td.innerHTML = data.BAIRRO;
+                tr.appendChild(td);
+
+
+                table.appendChild(tr);
+
+            }
+
+            const resultado = document.querySelector('.secondone-result');
             resultado.appendChild(table);
         };
 
+       
+        fetch('JSON archives/2012/paulinho.json')
+            .then(resposta => resposta.json())
+            .then(json => carregaElementosNaPaginaBairrosTres(json));
+        // axios('bairro.json')
+        //   .then(resposta => carregaElementosNaPagina(resposta.data));
+
+
+        function carregaElementosNaPaginaBairrosTres(json) {
+            const table = document.createElement('table');
+           // adiciona linha de cabeçalho com títulos das colunas
+            const headerRow = document.createElement('tr');
+            let th = document.createElement('th');
+            
+            th.innerHTML = "Votos";
+            headerRow.appendChild(th);
+            th = document.createElement('th');
+            
+            th.innerHTML = "Local de Votação";
+            headerRow.appendChild(th);
+            th = document.createElement('th');
+           
+            th.innerHTML = "Escola";
+            headerRow.appendChild(th);
+            th = document.createElement('th');
+            
+            th.innerHTML = "Bairro";
+            headerRow.appendChild(th);
+            table.appendChild(headerRow);
+            
+      
+            
+            for (let data of json) {
+                const tr = document.createElement('tr');
+                let td = document.createElement('td');
+        
+                td = document.createElement('td');
+                td.innerHTML = data.QT_VOTOS;
+                tr.appendChild(td);
+
+
+                td = document.createElement('td');
+                td.innerHTML = data.NR_LOCAL_VOTACAO;
+                tr.appendChild(td);
+                
+
+                td = document.createElement('td');
+                td.innerHTML = data.ESCOLA;
+                tr.appendChild(td);
+               
+                td = document.createElement('td');
+                td.innerHTML = data.BAIRRO;
+                tr.appendChild(td);
+
+
+                table.appendChild(tr);
+
+            }
+
+            const resultado = document.querySelector('.thirdone-result');
+            resultado.appendChild(table);
+        };
+       
         var marcadores2012 = [
     //Japuí
     L.marker([-23.983613, -46.388037])
